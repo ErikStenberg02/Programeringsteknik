@@ -119,6 +119,7 @@ namespace ExpenseCalculator
                 var selectedCategory = ShowMenu("Select category!", Category.GetCategoryCategoriess());
                 var expense = new Expense(name, price, Category.ParseCategory(Category.GetCategoryCategoriess()[selectedCategory].ToString()));
                 this.expenses.Add(expense);
+                UserBack();
             }
             public Decimal SumExpenses(Category.Categories? category = null)
             {
@@ -184,9 +185,10 @@ namespace ExpenseCalculator
 
                 for (int i = 0; i < expenses.Count; i++)
                 {
-                    if (selection.ToString() == expenses[i].name)
+                    if (expenses[selection].name == expenses[i].name)
                     {
                         expenses.Remove(this.expenses[i]);
+                        UserBack();
                         return;
                     }
                 }
@@ -197,6 +199,7 @@ namespace ExpenseCalculator
                 if (input.ToLower() == "yes" || input.ToLower() == "y")
                 {
                     expenses.Clear();
+                    UserBack();
                 }
             }
         }
